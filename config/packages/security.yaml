@@ -32,8 +32,13 @@ security:
         ROLE_USER: []
 
     access_control:
-        - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/manager, roles: ROLE_MANAGER }
+        - { path: ^/user/edit, roles: ROLE_ADMIN }
+        - { path: ^/user$, roles: ROLE_ADMIN }
+        - { path: ^/hotel/new, roles: ROLE_ADMIN }
+
+
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/manager, roles: ROLE_MANAGER }
 
 when@test:
     security:

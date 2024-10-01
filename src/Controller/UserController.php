@@ -27,10 +27,16 @@ final class UserController extends AbstractController
             'users' => $userRepository->findAll(),
         ]);
     }
+    
 
     #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        if ($this->getUser()) {
+            // Redirect to the user index page if the user is logged in
+            return $this->redirectToRoute('app_user_index');
+        }
+        
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
@@ -49,7 +55,6 @@ final class UserController extends AbstractController
 
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->render('user/new.html.twig', [
             'user' => $user,
             'form' => $form,
