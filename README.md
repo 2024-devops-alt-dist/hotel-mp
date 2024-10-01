@@ -40,8 +40,11 @@ Description : Un formulaire de contact est disponible pour permettre aux visite
 ## 2 - Classement des user stories par priorité :
 
 US1/US2/US3 : Sont liées au crud donc à part la partie dashboard qui servira de support visuel, les fonctionnalités seront déjà réalisées en même temps que le crud
+
 US4 : Pareil, cette fonctionnalité sera associée aux routes show et index des établissements et suites
+
 US7 : Formulaire de contact basique 
+
 US5/US6 : Sont liés à la table de jointure réservation (à vérifier si il s’agit bien d’une table de jointure) entre user et suite
 
 ## 3 – Wireframe
