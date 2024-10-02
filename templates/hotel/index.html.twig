@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hotel index{% endblock %}
+{% block title %}Liste des établissements{% endblock %}
 
 {% block body %}
-    <h1>Hotel index</h1>
+    <h1>Liste des établissements</h1>
 
     <table class="table">
         <thead>
@@ -24,6 +24,8 @@
                 <td>{{ hotel.city }}</td>
                 <td>{{ hotel.address }}</td>
                 <td>{{ hotel.description }}</td>
+                <img src="{{ asset('uploads/hotels/' ~ hotel.image) }}" alt="{{ hotel.name }}" />
+
             </tr>
         {% else %}
             <tr>

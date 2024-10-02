@@ -1,8 +1,8 @@
 .banner{
     width: 100%;
-    height: 100vh;
+    height: auto;
     background-image: url('../images/homepage.webp');
-    background-size: cover;
+    background-size:auto;
     background-position: center;
 }
 .navbar{
@@ -11,13 +11,14 @@
     padding: 35px 0;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 .logo{
     width: 120px;
     cursor: pointer;
 }
 .navbar ul li{
+    font-size: 25px;
     list-style: none;
     display: inline-block;
     margin: 0 20px;
@@ -25,14 +26,14 @@
 }
 .navbar ul li a{
     text-decoration: none;
-    color: #fff;
+    color: #000000;
     text-transform: uppercase;
 }
 .navbar ul li::after{
     content: '';
     height:3px;
     width:0%;
-    background:#009688;
+    background:#ffffff;
     position:absolute;
     left:0;
     bottom:-10px;
@@ -41,24 +42,7 @@
 .navbar ul li:hover::after{
     width:100%;
 }
-.content{
-    position:absolute;
-    width:100%;
-    top:50%;
-    transform: translateY(-50%);
-    text-align:center;
-    color:#fff;
-}
-.content h1{
-    font-size:70px;
-    margin-top:80px;
-    background-color: #009688;
-}
-.content p{
-    margin:20px auto;
-    font-weight:100;
-    line-height:25px;
-}
+
 button{
     width:200px;
     padding: 15px 0;
@@ -66,7 +50,7 @@ button{
     margin:20 px 10 px;
     border-radius:25px;
     font-weight:bold;
-    border: 2px solid #009688;
+    border: 2px solid #6d63ff;
     background: transparent;
     color:#fff;
     cursor: pointer;
@@ -74,7 +58,7 @@ button{
     overflow: hidden;
 }
 span{
-    background: #009688;
+    background: #6d63ff;
     height: 100%;
     width: 0%;
     border-radius: 25px;
