@@ -7,7 +7,7 @@
 En tant qu'administrateur, je veux pouvoir gérer les établissements (créer, modifier, supprimer) pour maintenir à jour la liste des hôtels.
 Description : L'administrateur est un employé du groupe Hôtel Clair de Lune chargé du maintien de l'application web. Chaque établissement comporte un nom, une ville, une adresse, et une description.
 
-### US2 : Gérer les gérants
+### US2 : Gérer les gérants.
 
 En tant qu'administrateur, je veux pouvoir gérer les gérants des hôtels (créer, modifier, supprimer) afin de leur permettre de gérer leurs établissements.
 Description : Un gérant est responsable de son propre établissement. Chaque gérant a un nom, un prénom, une adresse e-mail et un mot de passe sécurisé.
