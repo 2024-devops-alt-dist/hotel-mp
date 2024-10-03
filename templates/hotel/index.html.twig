@@ -5,36 +5,27 @@
 {% block body %}
     <h1>Liste des établissements</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>City</th>
-                <th>Address</th>
-                <th>Description</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for hotel in hotels %}
-            <tr>
-                <td>{{ hotel.id }}</td>
-                <td>{{ hotel.name }}</td>
-                <td>{{ hotel.city }}</td>
-                <td>{{ hotel.address }}</td>
-                <td>{{ hotel.description }}</td>
-                <img src="{{ asset('uploads/hotels/' ~ hotel.image) }}" alt="{{ hotel.name }}" />
-
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">Aucun hôtel disponible</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="container">
+        <div class="row">
+            {% for hotel in hotels %}
+                <div class="col-md-6 mb-4" >
+                    <div class="card">
+                        <a href="{{ path('app_hotel_show', { id: hotel.id }) }}">
+                        <img src="{{ asset('uploads/hotels/' ~ hotel.image) }}" class="card-img-top" alt="{{ hotel.name }}" style="width: 100%; height: auto;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ hotel.name }}</h5>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="col-12">
+                    <p>Aucun hôtel disponible</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    
     {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('app_hotel_new') }}">Créer un nouvel hôtel</a>
+        <a href="{{ path('app_hotel_new') }}" class="btn btn-primary admin-button">Créer un nouvel hôtel</a>
     {% endif %}
 {% endblock %}

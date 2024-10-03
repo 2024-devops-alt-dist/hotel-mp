@@ -4,35 +4,28 @@
 
 {% block body %}
     <h1>Suite</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ suite.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ suite.title }}</td>
-            </tr>
-            <tr>
-                <th>MainImage</th>
-                <td>{{ suite.mainImage }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ suite.price }}</td>
-            </tr>
-            <tr>
-                <th>ImageGallery</th>
-                <td>{{ suite.imageGallery ? suite.imageGallery|join(', ') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_suite_index') }}">back to list</a>
-
-    <a href="{{ path('app_suite_edit', {'id': suite.id}) }}">edit</a>
-
-    {{ include('suite/_delete_form.html.twig') }}
+    <div class="container custom-container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card" style="margin-left: 0;">
+                    <img src="{{ asset('uploads/suites/' ~ suite.mainImage) }}" class="card-img-top" alt="{{ suite.title }}" style="width: 100%; height: auto;">
+                    <div class="card-body">
+                        <h1 class="card-title">{{ suite.title }}</h1>
+                        <p class="card-text">Prix : {{ suite.price }} €</p>
+                        <a href="{{ path('app_hotel_show', { id: hotel.id }) }}">
+                            <button class="btn btn-lg btn-primary" style="width:fit-content">Revenir à la liste des suites de l'hôtel</button>
+                        </a>
+                        {% if is_granted('ROLE_MANAGER') %}
+                            <a href="{{ path('app_suite_edit', {'id': suite.id}) }}">
+                                <button class="btn btn-lg btn-primary" style="margin-top:1%">Modifier la suite</button>
+                            </a>
+                        {% endif %}
+                         <a href="{{ path('app_booking_new') }}">
+                                <button class="btn btn-lg btn-primary" style="margin-top:1%">Réserver</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

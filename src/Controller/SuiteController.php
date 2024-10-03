@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Suite;
 use App\Form\SuiteType;
+use App\Repository\HotelRepository;
 use App\Repository\SuiteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -42,13 +43,18 @@ final class SuiteController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_suite_show', methods: ['GET'])]
-    public function show(Suite $suite): Response
+    #[Route('/suite/{id}', name: 'app_suite_show', methods: ['GET'])]
+    public function show(Suite $suite, HotelRepository $hotelRepository): Response
     {
+        // Fetch the associated hotel
+        $hotel = $suite->getHotel(); // Assuming getHotel() returns the associated hotel object
+
         return $this->render('suite/show.html.twig', [
             'suite' => $suite,
+            'hotel' => $hotel, // Pass the hotel to the template
         ]);
     }
+
 
     #[Route('/{id}/edit', name: 'app_suite_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Suite $suite, EntityManagerInterface $entityManager): Response

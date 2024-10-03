@@ -26,8 +26,10 @@
 }
 .navbar ul li a{
     text-decoration: none;
-    color: #000000;
+    color: #ffffff;
+    text-shadow: rgb(0, 0, 0) 1px 0 10px;
     text-transform: uppercase;
+    /* background-color: rgba(0, 0, 0, 0.5); */
 }
 .navbar ul li::after{
     content: '';
@@ -73,4 +75,22 @@ button:hover span{
 }
 button:hover{
     border: none;
+}
+
+h1 {
+    padding:2% !important;
+}
+
+.custom-container {
+    width: 80%;
+    margin: 0 auto;
+    padding:1%
+}
+
+body{
+  background-color: #f0f0f0;  
+}
+
+.admin-button {
+    margin:2%
 }

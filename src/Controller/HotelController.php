@@ -51,31 +51,31 @@ final class HotelController extends AbstractController
     }
 
     #[Route('/hotel/{id}/edit', name: 'app_hotel_edit', methods: ['GET', 'POST'])]
-public function edit(Request $request, Hotel $hotel, EntityManagerInterface $entityManager): Response
-{
-    // Get the currently logged-in user
-    $currentUser = $this->getUser();
+    public function edit(Request $request, Hotel $hotel, EntityManagerInterface $entityManager): Response
+    {
+        // Get the currently logged-in user
+        $currentUser = $this->getUser();
 
-    // Check if the logged-in user is the one associated with the hotel
-    if ($hotel->getUserId() !== $currentUser) {
-        throw $this->createAccessDeniedException('You do not have permission to edit this hotel.');
+        // Check if the logged-in user is the one associated with the hotel
+        if ($hotel->getUserId() !== $currentUser) {
+            throw $this->createAccessDeniedException('You do not have permission to edit this hotel.');
+        }
+
+        // Proceed with the edit form logic if the user is authorized
+        $form = $this->createForm(HotelType::class, $hotel);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_hotel_index');
+        }
+
+        return $this->render('hotel/edit.html.twig', [
+            'hotel' => $hotel,
+            'form' => $form,
+        ]);
     }
-
-    // Proceed with the edit form logic if the user is authorized
-    $form = $this->createForm(HotelType::class, $hotel);
-    $form->handleRequest($request);
-
-    if ($form->isSubmitted() && $form->isValid()) {
-        $entityManager->flush();
-
-        return $this->redirectToRoute('app_hotel_index');
-    }
-
-    return $this->render('hotel/edit.html.twig', [
-        'hotel' => $hotel,
-        'form' => $form,
-    ]);
-}
 
     #[Route('/{id}', name: 'app_hotel_delete', methods: ['POST'])]
     public function delete(Request $request, Hotel $hotel, EntityManagerInterface $entityManager): Response

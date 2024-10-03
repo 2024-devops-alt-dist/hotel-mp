@@ -35,6 +35,7 @@ security:
         - { path: ^/user/edit, roles: ROLE_ADMIN }
         - { path: ^/user$, roles: ROLE_ADMIN }
         - { path: ^/hotel/new, roles: ROLE_ADMIN }
+        - { path: ^/suite/new, roles: ROLE_ADMIN }
 
 
         # - { path: ^/admin, roles: ROLE_ADMIN }

@@ -7,8 +7,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: SuiteRepository::class)]
+#[Vich\Uploadable]
 class Suite
 {
     #[ORM\Id]
@@ -22,6 +25,12 @@ class Suite
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $mainImage = null;
 
+    #[Vich\UploadableField(mapping: 'suite_images', fileNameProperty: 'mainImage')]
+    private ?File $imageFile = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $updatedAt = null;
+
     #[ORM\Column(nullable: true)]
     private ?int $price = null;
 
@@ -29,7 +38,7 @@ class Suite
     private ?array $imageGallery = null;
 
     #[ORM\ManyToOne(inversedBy: 'suites')]
-    private ?hotel $hotel = null;
+    private ?Hotel $hotel = null;
 
     /**
      * @var Collection<int, Booking>
@@ -71,6 +80,27 @@ class Suite
         return $this;
     }
 
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(?File $imageFile = null): static
+    {
+        $this->imageFile = $imageFile;
+
+        if ($imageFile) {
+            $this->updatedAt = new \DateTimeImmutable(); // Update the timestamp on new upload
+        }
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
     public function getPrice(): ?int
     {
         return $this->price;
@@ -95,12 +125,12 @@ class Suite
         return $this;
     }
 
-    public function getHotel(): ?hotel
+    public function getHotel(): ?Hotel
     {
         return $this->hotel;
     }
 
-    public function setHotel(?hotel $hotel): static
+    public function setHotel(?Hotel $hotel): static
     {
         $this->hotel = $hotel;
 
