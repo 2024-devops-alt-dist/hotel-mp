@@ -1,0 +1,7 @@
+{# templates/contact/contact.html.twig #}
+{{ form_start(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.message) }}
+    <button type="submit" class="btn btn-primary">Send Message</button>
+{{ form_end(form) }}
